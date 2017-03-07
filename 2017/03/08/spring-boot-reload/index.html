@@ -3,24 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>macdown使用 | Where Are We From?</title>
+  <title>intellij spring boot 热部署 | Where Are We From?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="macdown 资料列表
-基本使用点击
-高级技巧点击">
+  <meta name="description" content="如果热部署只涉及类函数里面的代码修改，command+shift+f9重新编译类文件即可
+如果热部署支持新增类文件等修改
+
+1.修改intellij的配置123+ command + shift + a --&amp;gt; 查找make project automatically --&amp;gt; 选中+ command + shift + a --&amp;gt; 查找Registry --&amp;gt; 找到并勾选">
 <meta property="og:type" content="article">
-<meta property="og:title" content="macdown使用">
-<meta property="og:url" content="http://yoursite.com/2017/02/22/macdown-doc/index.html">
+<meta property="og:title" content="intellij spring boot 热部署">
+<meta property="og:url" content="http://yoursite.com/2017/03/08/spring-boot-reload/index.html">
 <meta property="og:site_name" content="Where Are We From?">
-<meta property="og:description" content="macdown 资料列表
-基本使用点击
-高级技巧点击">
-<meta property="og:updated_time" content="2017-02-22T16:13:06.000Z">
+<meta property="og:description" content="如果热部署只涉及类函数里面的代码修改，command+shift+f9重新编译类文件即可
+如果热部署支持新增类文件等修改
+
+1.修改intellij的配置123+ command + shift + a --&amp;gt; 查找make project automatically --&amp;gt; 选中+ command + shift + a --&amp;gt; 查找Registry --&amp;gt; 找到并勾选">
+<meta property="og:updated_time" content="2017-03-07T16:19:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="macdown使用">
-<meta name="twitter:description" content="macdown 资料列表
-基本使用点击
-高级技巧点击">
+<meta name="twitter:title" content="intellij spring boot 热部署">
+<meta name="twitter:description" content="如果热部署只涉及类函数里面的代码修改，command+shift+f9重新编译类文件即可
+如果热部署支持新增类文件等修改
+
+1.修改intellij的配置123+ command + shift + a --&amp;gt; 查找make project automatically --&amp;gt; 选中+ command + shift + a --&amp;gt; 查找Registry --&amp;gt; 找到并勾选">
   
     <link rel="alternate" href="/atom.xml" title="Where Are We From?" type="application/atom+xml">
   
@@ -73,14 +76,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-macdown-doc" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-spring-boot-reload" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/02/22/macdown-doc/" class="article-date">
-  <time datetime="2017-02-22T15:57:58.000Z" itemprop="datePublished">2017-02-22</time>
+    <a href="/2017/03/08/spring-boot-reload/" class="article-date">
+  <time datetime="2017-03-07T16:11:47.000Z" itemprop="datePublished">2017-03-08</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/macdown/">macdown</a>
+    <a class="article-category-link" href="/categories/spring-boot/">spring boot</a>
   </div>
 
   </div>
@@ -91,7 +94,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      macdown使用
+      intellij spring boot 热部署
     </h1>
   
 
@@ -99,17 +102,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>macdown 资料列表</p>
-<h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><p><a href="http://www.jianshu.com/p/815788f4b01d" target="_blank" rel="external">点击</a></p>
-<h1 id="高级技巧"><a href="#高级技巧" class="headerlink" title="高级技巧"></a>高级技巧</h1><p><a href="http://www.jianshu.com/p/0b257de21eb5" target="_blank" rel="external">点击</a></p>
+        <ul>
+<li>如果热部署只涉及类函数里面的代码修改，command+shift+f9重新编译类文件即可</li>
+<li>如果热部署支持新增类文件等修改</li>
+</ul>
+<p>1.修改intellij的配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">+ command + shift + a --&gt; 查找make project automatically --&gt; 选中</div><div class="line">+ command + shift + a --&gt; 查找Registry --&gt; 找到并勾选compiler.automake.allow.when.app.running</div><div class="line">+ 重启intellij</div></pre></td></tr></table></figure></p>
+<p>2.引入spring-boot-devtools jar<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;  </div><div class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  </div><div class="line">            &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;  </div><div class="line">            &lt;optional&gt;true&lt;/optional&gt;  </div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure></p>
+<p>3.配置pom<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;build&gt;  </div><div class="line">        &lt;plugins&gt;  </div><div class="line">            &lt;plugin&gt;  </div><div class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  </div><div class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;  </div><div class="line">                &lt;configuration&gt;  </div><div class="line">                    &lt;fork&gt;true&lt;/fork&gt;  </div><div class="line">                &lt;/configuration&gt;  </div><div class="line">            &lt;/plugin&gt;  </div><div class="line">        &lt;/plugins&gt;  </div><div class="line">&lt;/build&gt;</div></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/22/macdown-doc/" data-id="cizzqqz5300060nqnknt86cl3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/03/08/spring-boot-reload/" data-id="cizzqqz5k000u0nqnbg11qmvw" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/macdown/">macdown</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/intellij/">intellij</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-boot/">spring boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/热部署/">热部署</a></li></ul>
 
     </footer>
   </div>
@@ -117,19 +124,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/02/23/memcacheadmin/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          memcached管理工具memcachedadmin
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/02/21/git-command/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/02/28/swagger-integrate-springboot/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">git常用命令</div>
+      <div class="article-nav-title">spring boot集成swagger</div>
     </a>
   
 </nav>

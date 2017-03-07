@@ -68,6 +68,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-spring-boot-reload" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/08/spring-boot-reload/" class="article-date">
+  <time datetime="2017-03-07T16:11:47.000Z" itemprop="datePublished">2017-03-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/spring-boot/">spring boot</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/08/spring-boot-reload/">intellij spring boot 热部署</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>如果热部署只涉及类函数里面的代码修改，command+shift+f9重新编译类文件即可</li>
+<li>如果热部署支持新增类文件等修改</li>
+</ul>
+<p>1.修改intellij的配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">+ command + shift + a --&gt; 查找make project automatically --&gt; 选中</div><div class="line">+ command + shift + a --&gt; 查找Registry --&gt; 找到并勾选compiler.automake.allow.when.app.running</div><div class="line">+ 重启intellij</div></pre></td></tr></table></figure></p>
+<p>2.引入spring-boot-devtools jar<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;  </div><div class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  </div><div class="line">            &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;  </div><div class="line">            &lt;optional&gt;true&lt;/optional&gt;  </div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure></p>
+<p>3.配置pom<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;build&gt;  </div><div class="line">        &lt;plugins&gt;  </div><div class="line">            &lt;plugin&gt;  </div><div class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  </div><div class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;  </div><div class="line">                &lt;configuration&gt;  </div><div class="line">                    &lt;fork&gt;true&lt;/fork&gt;  </div><div class="line">                &lt;/configuration&gt;  </div><div class="line">            &lt;/plugin&gt;  </div><div class="line">        &lt;/plugins&gt;  </div><div class="line">&lt;/build&gt;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/08/spring-boot-reload/" data-id="cizzqqz5k000u0nqnbg11qmvw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/intellij/">intellij</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-boot/">spring boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/热部署/">热部署</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-swagger-integrate-springboot" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/02/28/swagger-integrate-springboot/" class="article-date">
@@ -111,7 +160,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/28/swagger-integrate-springboot/" data-id="cizp7nbr0000tl8qnt3c8exp6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/28/swagger-integrate-springboot/" data-id="cizzqqz5j000t0nqn0ltg7fx9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/restful/">restful</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/swagger/">swagger</a></li></ul>
@@ -154,7 +203,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/23/memcached-command/" data-id="cizp7nbqn000hl8qnd231lo3w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/23/memcached-command/" data-id="cizzqqz5d000i0nqnyw0gypbp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/memcached/">memcached</a></li></ul>
@@ -215,7 +264,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/23/memcacheadmin/" data-id="cizp7nbqf000cl8qnctpty8g4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/23/memcacheadmin/" data-id="cizzqqz5e000m0nqnktzkuo6d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/memcached/">memcached</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/memcachedadmin/">memcachedadmin</a></li></ul>
@@ -260,7 +309,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/22/macdown-doc/" data-id="cizp7nbqa000al8qn4ex0ul59" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/22/macdown-doc/" data-id="cizzqqz5300060nqnknt86cl3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/macdown/">macdown</a></li></ul>
@@ -303,7 +352,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/21/git-command/" data-id="cizp7nbpp0000l8qnimj7ch71" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/21/git-command/" data-id="cizzqqz4m00000nqnnz6ssvgn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
@@ -346,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/10/maven-unit-test-skip/" data-id="cizp7nbqp000ll8qnzrl6eh9v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/10/maven-unit-test-skip/" data-id="cizzqqz5c000g0nqnpdfbp78k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/maven/">maven</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unit-test/">unit test</a></li></ul>
@@ -396,7 +445,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/06/mac-ntfs/" data-id="cizp7nbq70006l8qnbjfk0p3t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/06/mac-ntfs/" data-id="cizzqqz58000c0nqnbevpxhsc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OS-X/">OS X</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/">mac</a></li></ul>
@@ -462,7 +511,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/29/hangzhou-travel/" data-id="cizp7nbpu0001l8qn6fmufdyd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/29/hangzhou-travel/" data-id="cizzqqz5000040nqnfdvh5toy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/旅游/">旅游</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杭州/">杭州</a></li></ul>
@@ -505,57 +554,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/29/maven-g/" data-id="cizp7nbqk000gl8qnx8hmwcnu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/29/maven-g/" data-id="cizzqqz55000a0nqnsnegifcn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/maven/">maven</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-oh-my-zsh-introduce" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/27/oh-my-zsh-introduce/" class="article-date">
-  <time datetime="2017-01-27T06:53:05.000Z" itemprop="datePublished">2017-01-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/应用工具/">应用工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/27/oh-my-zsh-introduce/">安装oh-my-zsh</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>shell工具，比bash,zsh好用很多。使用方法可以参照下面2篇文章</p>
-<ul>
-<li><a href="http://www.jianshu.com/p/0fd8d396c8ab" target="_blank" rel="external">简单版教程</a></li>
-<li><a href="http://yijiebuyi.com/blog/b9b5e1ebb719f22475c38c4819ab8151.html" target="_blank" rel="external">装X版教程</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/27/oh-my-zsh-introduce/" data-id="cizp7nbqs000ol8qnzdjfz1av" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oh-my-zsh/">oh-my-zsh</a></li></ul>
 
     </footer>
   </div>
@@ -577,7 +579,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac使用/">Mac使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/macdown/">macdown</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/maven/">maven</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/memcached/">memcached</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/应用工具/">应用工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/旅游/">旅游</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac使用/">Mac使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/macdown/">macdown</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/maven/">maven</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/memcached/">memcached</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring-boot/">spring boot</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/应用工具/">应用工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/旅游/">旅游</a></li></ul>
     </div>
   </div>
 
@@ -587,7 +589,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/OS-X/">OS X</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macdown/">macdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcached/">memcached</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcachedadmin/">memcachedadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oh-my-zsh/">oh-my-zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swagger/">swagger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unit-test/">unit test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/旅游/">旅游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杭州/">杭州</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/OS-X/">OS X</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/intellij/">intellij</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macdown/">macdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcached/">memcached</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcachedadmin/">memcachedadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oh-my-zsh/">oh-my-zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/">spring boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swagger/">swagger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unit-test/">unit test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/旅游/">旅游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杭州/">杭州</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/热部署/">热部署</a></li></ul>
     </div>
   </div>
 
@@ -597,7 +599,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/OS-X/" style="font-size: 10px;">OS X</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/macdown/" style="font-size: 10px;">macdown</a> <a href="/tags/maven/" style="font-size: 20px;">maven</a> <a href="/tags/memcached/" style="font-size: 20px;">memcached</a> <a href="/tags/memcachedadmin/" style="font-size: 10px;">memcachedadmin</a> <a href="/tags/oh-my-zsh/" style="font-size: 10px;">oh-my-zsh</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/swagger/" style="font-size: 10px;">swagger</a> <a href="/tags/unit-test/" style="font-size: 10px;">unit test</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/旅游/" style="font-size: 10px;">旅游</a> <a href="/tags/杭州/" style="font-size: 10px;">杭州</a>
+      <a href="/tags/OS-X/" style="font-size: 10px;">OS X</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/intellij/" style="font-size: 10px;">intellij</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/macdown/" style="font-size: 10px;">macdown</a> <a href="/tags/maven/" style="font-size: 20px;">maven</a> <a href="/tags/memcached/" style="font-size: 20px;">memcached</a> <a href="/tags/memcachedadmin/" style="font-size: 10px;">memcachedadmin</a> <a href="/tags/oh-my-zsh/" style="font-size: 10px;">oh-my-zsh</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/swagger/" style="font-size: 10px;">swagger</a> <a href="/tags/unit-test/" style="font-size: 10px;">unit test</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/旅游/" style="font-size: 10px;">旅游</a> <a href="/tags/杭州/" style="font-size: 10px;">杭州</a> <a href="/tags/热部署/" style="font-size: 10px;">热部署</a>
     </div>
   </div>
 
@@ -606,7 +608,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li></ul>
     </div>
   </div>
 
@@ -617,6 +619,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/03/08/spring-boot-reload/">intellij spring boot 热部署</a>
+          </li>
         
           <li>
             <a href="/2017/02/28/swagger-integrate-springboot/">spring boot集成swagger</a>
@@ -632,10 +638,6 @@
         
           <li>
             <a href="/2017/02/22/macdown-doc/">macdown使用</a>
-          </li>
-        
-          <li>
-            <a href="/2017/02/21/git-command/">git常用命令</a>
           </li>
         
       </ul>
