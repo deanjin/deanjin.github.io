@@ -3,17 +3,84 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: intellij | Where Are We From?</title>
+  <title>spring各种蛋疼的annotation | Where Are We From?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Dean Jin&apos;s Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Where Are We From?">
-<meta property="og:url" content="http://yoursite.com/tags/intellij/index.html">
+  <meta name="description" content="annotation
+meaning
+
+
+
+
+@Component
+注解在类上面，与component-scan联合使用
+
+
+@ComponentScan
+等同于xml中配置
+
+
+@Configuration
+注解在类上面，与@Bean联合使用，两者用于替换spring的xml配置，@Configuration等同，@Bean等同
+
+
+@Controller
+控制层组件
+
+
+@Service">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring各种蛋疼的annotation">
+<meta property="og:url" content="http://yoursite.com/2017/03/10/spring-annotation/index.html">
 <meta property="og:site_name" content="Where Are We From?">
-<meta property="og:description" content="Dean Jin&apos;s Blog">
+<meta property="og:description" content="annotation
+meaning
+
+
+
+
+@Component
+注解在类上面，与component-scan联合使用
+
+
+@ComponentScan
+等同于xml中配置
+
+
+@Configuration
+注解在类上面，与@Bean联合使用，两者用于替换spring的xml配置，@Configuration等同，@Bean等同
+
+
+@Controller
+控制层组件
+
+
+@Service">
+<meta property="og:updated_time" content="2017-03-10T14:19:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Where Are We From?">
-<meta name="twitter:description" content="Dean Jin&apos;s Blog">
+<meta name="twitter:title" content="spring各种蛋疼的annotation">
+<meta name="twitter:description" content="annotation
+meaning
+
+
+
+
+@Component
+注解在类上面，与component-scan联合使用
+
+
+@ComponentScan
+等同于xml中配置
+
+
+@Configuration
+注解在类上面，与@Bean联合使用，两者用于替换spring的xml配置，@Configuration等同，@Bean等同
+
+
+@Controller
+控制层组件
+
+
+@Service">
   
     <link rel="alternate" href="/atom.xml" title="Where Are We From?" type="application/atom+xml">
   
@@ -66,39 +133,103 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/03/08/spring-boot-reload/" class="archive-article-date">
-  <time datetime="2017-03-07T16:11:47.000Z" itemprop="datePublished">3月 8</time>
+        <section id="main"><article id="post-spring-annotation" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/10/spring-annotation/" class="article-date">
+  <time datetime="2017-03-10T14:00:47.000Z" itemprop="datePublished">2017-03-10</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/spring/">spring</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/08/spring-boot-reload/">intellij spring boot 热部署</a>
+    <h1 class="article-title" itemprop="name">
+      spring各种蛋疼的annotation
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <table>
+<thead>
+<tr>
+<th>annotation</th>
+<th>meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Component</td>
+<td>注解在类上面，与component-scan联合使用</td>
+</tr>
+<tr>
+<td>@ComponentScan</td>
+<td>等同于xml中配置<component-scan></component-scan></td>
+</tr>
+<tr>
+<td>@Configuration</td>
+<td>注解在类上面，与@Bean联合使用，两者用于替换spring的xml配置，@Configuration等同<beans>，@Bean等同<bean></bean></beans></td>
+</tr>
+<tr>
+<td>@Controller</td>
+<td>控制层组件</td>
+</tr>
+<tr>
+<td>@Service</td>
+<td>业务逻辑层组件</td>
+</tr>
+<tr>
+<td>@Repository</td>
+<td>数据访问层组件</td>
+</tr>
+<tr>
+<td>@EnableAutoConfiguration</td>
+<td>spring boot, 放到入口类，自动注入程序所需类</td>
+</tr>
+<tr>
+<td>@ConfigurationProperties</td>
+<td>spring boot, 讲properties中的配置映射到类的属性</td>
+</tr>
+<tr>
+<td>@SpringApplication</td>
+<td>spring boot, @EnableAutoConfiguration+@Configuration+@ComponentScan</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/10/spring-annotation/" data-id="cj03wt87z0029v3qnhsmhw28a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/annotaion/">annotaion</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/03/08/spring-boot-reload/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">intellij spring boot 热部署</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         
