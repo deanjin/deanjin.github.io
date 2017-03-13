@@ -282,7 +282,18 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;  </div><div class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  </div><div class="line">            &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;  </div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
 <p>3.配置pom</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;build&gt;  </div><div class="line">        &lt;plugins&gt;  </div><div class="line">            &lt;plugin&gt;  </div><div class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  </div><div class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;  </div><div class="line">                &lt;configuration&gt;  </div><div class="line">                    &lt;fork&gt;true&lt;/fork&gt;  </div><div class="line">                &lt;/configuration&gt;  </div><div class="line">            &lt;/plugin&gt;  </div><div class="line">        &lt;/plugins&gt;  </div><div class="line">&lt;/build&gt;</div></pre></td></tr></table></figure>
-
+<p>4.一些有用的配置</p>
+<ul>
+<li><p>默认行为restart改为live reload，application.properties加入配置:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">spring.devtools.restart.enabled=false</div></pre></td></tr></table></figure>
+</li>
+<li><p>某些路径的资源修改不触发restart，触发live reload</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">spring.devtools.restart.exclude=cn/fraudmetrix/**,cn/dean/**</div><div class="line"></div><div class="line">+ 监视额外目录的资源修改</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>spring.devtools.restart.additionalpaths=cn/fraudmetrix/**</p>
+<pre><code>
+</code></pre>
       
     </div>
     <footer class="article-footer">
