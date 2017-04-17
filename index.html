@@ -152,8 +152,13 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;plugin&gt;</div><div class="line">	&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</div><div class="line">	&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</div><div class="line">	&lt;version&gt;3.1&lt;/version&gt;</div><div class="line">	&lt;configuration&gt;</div><div class="line">		&lt;compilerArgument&gt;-parameters&lt;/compilerArgument&gt;</div><div class="line">		&lt;source&gt;1.8&lt;/source&gt;</div><div class="line">		&lt;target&gt;1.8&lt;/target&gt;</div><div class="line">	&lt;/configuration&gt;</div><div class="line">&lt;/plugin&gt;</div></pre></td></tr></table></figure>
 <ul>
-<li>idea支持<br>“build,execution,deployment”–&gt;compiler-&gt;java compiler-&gt; additional command line parameters 加上 - parameters</li>
+<li><p>idea支持<br>“build,execution,deployment”–&gt;compiler-&gt;java compiler-&gt; additional command line parameters 加上 - parameters</p>
+</li>
+<li><p>stream</p>
+</li>
 </ul>
+<p>stream = 函数式编程+并发计算，发挥多核优势</p>
+<p>intermediate: 输入一个stream，经过转换，输出一个新的stream, 此时为惰性求值，并没有遍历steram。操作有：filter, map, flatMap,distinct,skip,limit,sorted<br>terminal:输入一个stream，计算结果。操作有: foreach, sum, count, max, min, collect, reduce<br>short-circuting: 满足一个条件即中断。操作有：findAny, matchAny, firstFind, limit, allMatch, noneMatch</p>
 
       
     </div>
