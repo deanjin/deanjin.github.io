@@ -68,6 +68,127 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-spring-boot-reload" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/08/spring-boot-reload/" class="article-date">
+  <time datetime="2017-03-07T16:11:47.000Z" itemprop="datePublished">2017-03-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/spring/">spring</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/08/spring-boot-reload/">intellij spring boot 热部署</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="方案1-spring-bbot-devtools"><a href="#方案1-spring-bbot-devtools" class="headerlink" title="方案1:spring-bbot-devtools"></a>方案1:spring-bbot-devtools</h2><ul>
+<li>如果热部署只涉及类函数里面的代码修改，command+shift+f9重新编译类文件即可</li>
+<li>如果热部署支持新增类文件等修改</li>
+</ul>
+<p>1.修改intellij的配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">+ command + shift + a --&gt; 查找make project automatically --&gt; 选中</div><div class="line">+ command + shift + a --&gt; 查找Registry --&gt; 找到并勾选compiler.automake.allow.when.app.running</div><div class="line">+ 重启intellij</div></pre></td></tr></table></figure>
+<p>2.引入spring-boot-devtools jar</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;  </div><div class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  </div><div class="line">            &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;  </div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+<p>3.配置pom</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;build&gt;  </div><div class="line">        &lt;plugins&gt;  </div><div class="line">            &lt;plugin&gt;  </div><div class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  </div><div class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;  </div><div class="line">                &lt;configuration&gt;  </div><div class="line">                    &lt;fork&gt;true&lt;/fork&gt;  </div><div class="line">                &lt;/configuration&gt;  </div><div class="line">            &lt;/plugin&gt;  </div><div class="line">        &lt;/plugins&gt;  </div><div class="line">&lt;/build&gt;</div></pre></td></tr></table></figure>
+<p>4.一些有用的配置</p>
+<ul>
+<li><p>默认行为restart改为live reload，application.properties加入配置:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">spring.devtools.restart.enabled=false</div></pre></td></tr></table></figure>
+</li>
+<li><p>某些路径的资源修改不触发restart，触发live reload</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">spring.devtools.restart.exclude=cn/fraudmetrix/**,cn/dean/**</div></pre></td></tr></table></figure>
+</li>
+<li><p>监视额外目录的资源修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">spring.devtools.restart.additionalpaths=cn/fraudmetrix/**</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="方案2-springloaded"><a href="#方案2-springloaded" class="headerlink" title="方案2:springloaded"></a>方案2:springloaded</h2><p>spring-boot-devtool的两个classloader会导致dubbo类型cast失败，故切换到springloaded</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;!-- spring热部署--&gt;</div><div class="line">                &lt;dependency&gt;</div><div class="line">                    &lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line">                    &lt;artifactId&gt;springloaded&lt;/artifactId&gt;</div><div class="line">                    &lt;version&gt;1.2.1.RELEASE&lt;/version&gt;</div><div class="line">                &lt;/dependency&gt;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/08/spring-boot-reload/" data-id="cj5epohfu0024gcs6mrz6afyx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/intellij/">intellij</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-boot/">spring boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/热部署/">热部署</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-swagger-integrate-springboot" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/28/swagger-integrate-springboot/" class="article-date">
+  <time datetime="2017-02-28T07:21:14.000Z" itemprop="datePublished">2017-02-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/spring/">spring</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/28/swagger-integrate-springboot/">spring boot集成swagger</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>swagger的作用有下:</p>
+<ul>
+<li>通过swagger保持restful接口的代码和文档一致性,</li>
+<li>前后端开发分离</li>
+</ul>
+<p>swagger<a href="http://swagger.io/" target="_blank" rel="external">官网</a>, 跟spring框架集成可以参考:</p>
+<ul>
+<li><a href="http://blog.csdn.net/zhxtpray/article/details/53171857" target="_blank" rel="external">简单教程1</a></li>
+<li><a href="http://blog.csdn.net/hero06206/article/details/52668440" target="_blank" rel="external">简单教程2</a></li>
+<li><a href="http://www.cnblogs.com/h9527/p/5506956.html" target="_blank" rel="external">简单教程3</a></li>
+</ul>
+<p><strong>千万别加@EnableWebMvc</strong>，不然会访问<a href="http://127.0.0.1:8080/swagger-ui.html出现404" target="_blank" rel="external">http://127.0.0.1:8080/swagger-ui.html出现404</a></p>
+<p>dubbox集成swagger官方目前没有支持，可以参<a href="http://blog.csdn.net/zuishengmengsi1990/article/details/51243437" target="_blank" rel="external">这里</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/02/28/swagger-integrate-springboot/" data-id="cj5epohg4002egcs6ilk5s24v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/restful/">restful</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/swagger/">swagger</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-memcached-command" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/02/23/memcached-command/" class="article-date">
@@ -99,7 +220,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/23/memcached-command/" data-id="cj5epnly4000wf9s68jsmfsul" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/23/memcached-command/" data-id="cj5epohet0018gcs6j1jineqf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/memcached/">memcached</a></li></ul>
@@ -160,7 +281,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/23/memcacheadmin/" data-id="cj5epnly7000yf9s6s5yabwqi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/23/memcacheadmin/" data-id="cj5epoher0014gcs63i4qmt0q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/memcached/">memcached</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/memcachedadmin/">memcachedadmin</a></li></ul>
@@ -205,7 +326,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/22/macdown-doc/" data-id="cj5epnlxt000mf9s62teoaoeh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/22/macdown-doc/" data-id="cj5epohec000xgcs6vs70nljw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/macdown/">macdown</a></li></ul>
@@ -248,7 +369,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/21/git-command/" data-id="cj5epnlwj0004f9s69tt50p3n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/21/git-command/" data-id="cj5epohdi0009gcs6jfo3pdi8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
@@ -291,7 +412,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/10/maven-unit-test-skip/" data-id="cj5epnly90012f9s6rle1gxwo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/10/maven-unit-test-skip/" data-id="cj5epohen0013gcs63v50mcjx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/maven/">maven</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unit-test/">unit test</a></li></ul>
@@ -341,7 +462,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/06/mac-ntfs/" data-id="cj5epnlxx000qf9s6h1enft4b" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/06/mac-ntfs/" data-id="cj5epohea000tgcs61yplz1bq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OS-X/">OS X</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac/">mac</a></li></ul>
@@ -407,7 +528,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/29/hangzhou-travel/" data-id="cj5epnlwt0006f9s6kcprcqvk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/29/hangzhou-travel/" data-id="cj5epohdn000bgcs6t0ar3pq0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/旅游/">旅游</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杭州/">杭州</a></li></ul>
@@ -450,111 +571,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/29/maven-g/" data-id="cj5epnlxz000rf9s63r32uifh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/01/29/maven-g/" data-id="cj5epoheg000zgcs6lkbho2w6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/maven/">maven</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-oh-my-zsh-introduce" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/27/oh-my-zsh-introduce/" class="article-date">
-  <time datetime="2017-01-27T06:53:05.000Z" itemprop="datePublished">2017-01-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/应用工具/">应用工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/27/oh-my-zsh-introduce/">安装oh-my-zsh</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>shell工具，比bash,zsh好用很多。使用方法可以参照下面2篇文章</p>
-<ul>
-<li><a href="http://www.jianshu.com/p/0fd8d396c8ab" target="_blank" rel="external">简单版教程</a></li>
-<li><a href="http://yijiebuyi.com/blog/b9b5e1ebb719f22475c38c4819ab8151.html" target="_blank" rel="external">装X版教程</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/27/oh-my-zsh-introduce/" data-id="cj5epnlyo0019f9s6bb818hk0" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oh-my-zsh/">oh-my-zsh</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hexo-c" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/01/26/hexo-c/" class="article-date">
-  <time datetime="2017-01-26T09:38:43.000Z" itemprop="datePublished">2017-01-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/应用工具/">应用工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/26/hexo-c/">创建HEXO博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="创建方法"><a href="#创建方法" class="headerlink" title="创建方法"></a>创建方法</h2><p>一个不错博客平台，nodejs, 可以通过github提供公网访问，关键是支持macdown！<br>本质上就是一个git项目，把本地静态文件上传到github，通过域名映射提供对外访问能力，所以目前是静态web服务。</p>
-<p>详细搭建过程参照下面链接(搭建过程中槽点很多，基本上下面文章都提到了)：<br><a href="http://www.cnblogs.com/MuYunyun/p/5927491.html" target="_blank" rel="external">点击这里</a></p>
-<h2 id="一些坑点"><a href="#一些坑点" class="headerlink" title="一些坑点"></a>一些坑点</h2><ul>
-<li>node-sass 安装卡在 node scripts/install.js</li>
-</ul>
-<p>如遇到这个问题：node-sass 安装卡在 node scripts/install.js 解决办法，请参照<a href="https://segmentfault.com/a/1190000005921721" target="_blank" rel="external">下面链接</a></p>
-<ul>
-<li>如果运行hexo命令出现下面报错：<br>{ [Error: Cannot find module ‘./build/default/DTraceProviderBindings’] code: ‘MODULE_NOT_FOUND’ }</li>
-</ul>
-<p>该命令实际上不影响运行，请运行：<br><code>npm install -g hexo-cli --no-optional</code></p>
-<p>(作者也不太清楚问题原因，网上有很多解决方案，经测试，貌似只有这个方案是在我机器上是可行)</p>
-<h2 id="一些资料"><a href="#一些资料" class="headerlink" title="一些资料"></a>一些资料</h2><p>一些高级使用技巧请参考<a href="http://www.zipperary.com/categories/hexo/" target="_blank" rel="external">这里</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/01/26/hexo-c/" data-id="cj5epnlx2000bf9s6ece3loom" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客/">博客</a></li></ul>
 
     </footer>
   </div>
@@ -586,7 +606,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/1-8/">1.8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCLib/">GCLib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDKProxy/">JDKProxy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MAT/">MAT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OS-X/">OS X</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PoolingHttpClientConnectionManager/">PoolingHttpClientConnectionManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/actuator/">actuator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/annotaion/">annotaion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/antrl/">antrl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/curator/">curator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/intellij/">intellij</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jmx/">jmx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lexer/">lexer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macdown/">macdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcached/">memcached</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcachedadmin/">memcachedadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mycat/">mycat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oh-my-zsh/">oh-my-zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/">spring boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swagger/">swagger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/transaction/">transaction</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unit-test/">unit test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yacc/">yacc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事务/">事务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/互联网金融/">互联网金融</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存泄露/">内存泄露</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/房地产/">房地产</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/抽象工厂模式/">抽象工厂模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/旅游/">旅游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杭州/">杭州</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/热部署/">热部署</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/蒋村/">蒋村</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/词法分析/">词法分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法分析/">语法分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/风控/">风控</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/1-8/">1.8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/">AOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCLib/">GCLib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDKProxy/">JDKProxy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MAT/">MAT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OS-X/">OS X</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PoolingHttpClientConnectionManager/">PoolingHttpClientConnectionManager</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/actuator/">actuator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/annotaion/">annotaion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/antrl/">antrl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/curator/">curator</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/intellij/">intellij</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jmx/">jmx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lexer/">lexer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lombok/">lombok</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/macdown/">macdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcached/">memcached</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/memcachedadmin/">memcachedadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mycat/">mycat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oh-my-zsh/">oh-my-zsh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/">spring boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swagger/">swagger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/transaction/">transaction</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unit-test/">unit test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yacc/">yacc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/事务/">事务</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/互联网金融/">互联网金融</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存泄露/">内存泄露</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/房地产/">房地产</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/抽象工厂模式/">抽象工厂模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据库/">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/旅游/">旅游</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杭州/">杭州</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/热部署/">热部署</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/蒋村/">蒋村</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/词法分析/">词法分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语法分析/">语法分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/风控/">风控</a></li></ul>
     </div>
   </div>
 
@@ -596,7 +616,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/1-8/" style="font-size: 10px;">1.8</a> <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/GCLib/" style="font-size: 10px;">GCLib</a> <a href="/tags/JDKProxy/" style="font-size: 10px;">JDKProxy</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/MAT/" style="font-size: 10px;">MAT</a> <a href="/tags/OS-X/" style="font-size: 10px;">OS X</a> <a href="/tags/PoolingHttpClientConnectionManager/" style="font-size: 10px;">PoolingHttpClientConnectionManager</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/actuator/" style="font-size: 10px;">actuator</a> <a href="/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/tags/annotaion/" style="font-size: 10px;">annotaion</a> <a href="/tags/antrl/" style="font-size: 10px;">antrl</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/curator/" style="font-size: 10px;">curator</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/intellij/" style="font-size: 10px;">intellij</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/jmx/" style="font-size: 10px;">jmx</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/lexer/" style="font-size: 10px;">lexer</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/macdown/" style="font-size: 10px;">macdown</a> <a href="/tags/maven/" style="font-size: 13.33px;">maven</a> <a href="/tags/memcached/" style="font-size: 13.33px;">memcached</a> <a href="/tags/memcachedadmin/" style="font-size: 10px;">memcachedadmin</a> <a href="/tags/mycat/" style="font-size: 10px;">mycat</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/oh-my-zsh/" style="font-size: 10px;">oh-my-zsh</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/swagger/" style="font-size: 10px;">swagger</a> <a href="/tags/transaction/" style="font-size: 10px;">transaction</a> <a href="/tags/unit-test/" style="font-size: 10px;">unit test</a> <a href="/tags/yacc/" style="font-size: 10px;">yacc</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/事务/" style="font-size: 10px;">事务</a> <a href="/tags/互联网金融/" style="font-size: 10px;">互联网金融</a> <a href="/tags/内存泄露/" style="font-size: 10px;">内存泄露</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/房地产/" style="font-size: 13.33px;">房地产</a> <a href="/tags/抽象工厂模式/" style="font-size: 10px;">抽象工厂模式</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/旅游/" style="font-size: 10px;">旅游</a> <a href="/tags/杭州/" style="font-size: 10px;">杭州</a> <a href="/tags/热部署/" style="font-size: 10px;">热部署</a> <a href="/tags/蒋村/" style="font-size: 10px;">蒋村</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/词法分析/" style="font-size: 10px;">词法分析</a> <a href="/tags/语法分析/" style="font-size: 10px;">语法分析</a> <a href="/tags/风控/" style="font-size: 10px;">风控</a>
+      <a href="/tags/1-8/" style="font-size: 10px;">1.8</a> <a href="/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="/tags/GCLib/" style="font-size: 10px;">GCLib</a> <a href="/tags/JDKProxy/" style="font-size: 10px;">JDKProxy</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/MAT/" style="font-size: 10px;">MAT</a> <a href="/tags/OS-X/" style="font-size: 10px;">OS X</a> <a href="/tags/PoolingHttpClientConnectionManager/" style="font-size: 10px;">PoolingHttpClientConnectionManager</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/actuator/" style="font-size: 10px;">actuator</a> <a href="/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/tags/annotaion/" style="font-size: 10px;">annotaion</a> <a href="/tags/antrl/" style="font-size: 10px;">antrl</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/curator/" style="font-size: 10px;">curator</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/intellij/" style="font-size: 10px;">intellij</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/jmx/" style="font-size: 10px;">jmx</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/lexer/" style="font-size: 10px;">lexer</a> <a href="/tags/lombok/" style="font-size: 10px;">lombok</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/macdown/" style="font-size: 10px;">macdown</a> <a href="/tags/maven/" style="font-size: 13.33px;">maven</a> <a href="/tags/memcached/" style="font-size: 13.33px;">memcached</a> <a href="/tags/memcachedadmin/" style="font-size: 10px;">memcachedadmin</a> <a href="/tags/mycat/" style="font-size: 10px;">mycat</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/oh-my-zsh/" style="font-size: 10px;">oh-my-zsh</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/swagger/" style="font-size: 10px;">swagger</a> <a href="/tags/transaction/" style="font-size: 10px;">transaction</a> <a href="/tags/unit-test/" style="font-size: 10px;">unit test</a> <a href="/tags/yacc/" style="font-size: 10px;">yacc</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/事务/" style="font-size: 10px;">事务</a> <a href="/tags/互联网金融/" style="font-size: 10px;">互联网金融</a> <a href="/tags/内存泄露/" style="font-size: 10px;">内存泄露</a> <a href="/tags/博客/" style="font-size: 10px;">博客</a> <a href="/tags/房地产/" style="font-size: 13.33px;">房地产</a> <a href="/tags/抽象工厂模式/" style="font-size: 10px;">抽象工厂模式</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/旅游/" style="font-size: 10px;">旅游</a> <a href="/tags/杭州/" style="font-size: 10px;">杭州</a> <a href="/tags/热部署/" style="font-size: 10px;">热部署</a> <a href="/tags/蒋村/" style="font-size: 10px;">蒋村</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/词法分析/" style="font-size: 10px;">词法分析</a> <a href="/tags/语法分析/" style="font-size: 10px;">语法分析</a> <a href="/tags/风控/" style="font-size: 10px;">风控</a>
     </div>
   </div>
 
@@ -618,6 +638,14 @@
       <ul>
         
           <li>
+            <a href="/2017/07/22/dev-tool-lombok-1/">dev_tool_lombok</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/22/dev-tool-lombok/">lombok工具</a>
+          </li>
+        
+          <li>
             <a href="/2017/07/20/spring-aop-proxy/">Spring AOP 代理</a>
           </li>
         
@@ -627,14 +655,6 @@
         
           <li>
             <a href="/2017/07/15/other-1/">互金风控杂想</a>
-          </li>
-        
-          <li>
-            <a href="/2017/07/14/realestate-2/">预测楼市涨的一个有效指标</a>
-          </li>
-        
-          <li>
-            <a href="/2017/06/15/realestate-1/">杭州楼市简析1</a>
           </li>
         
       </ul>
