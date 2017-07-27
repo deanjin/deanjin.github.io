@@ -3,17 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: json | Where Are We From?</title>
+  <title>spring bean注入 | Where Are We From?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Dean Jin&apos;s Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Where Are We From?">
-<meta property="og:url" content="http://yoursite.com/tags/json/index.html">
+  <meta name="description" content="@Autowire 属于spring范畴， 默认byType装配，如果找不到，会byName装配，如果加了@Qualifier,则会按照byName，如果找不到GG
+@Resource 属于J2EE范畴，默认按照byName装配，如果找不到，按照byType装配。(1)可以指定type和name，如果全部指定，则要找到匹配type和name的bean; (2)可以指定type或者name，按照b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring bean注入">
+<meta property="og:url" content="http://yoursite.com/2017/07/27/spring-autowire/index.html">
 <meta property="og:site_name" content="Where Are We From?">
-<meta property="og:description" content="Dean Jin&apos;s Blog">
+<meta property="og:description" content="@Autowire 属于spring范畴， 默认byType装配，如果找不到，会byName装配，如果加了@Qualifier,则会按照byName，如果找不到GG
+@Resource 属于J2EE范畴，默认按照byName装配，如果找不到，按照byType装配。(1)可以指定type和name，如果全部指定，则要找到匹配type和name的bean; (2)可以指定type或者name，按照b">
+<meta property="og:updated_time" content="2017-07-27T01:14:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Where Are We From?">
-<meta name="twitter:description" content="Dean Jin&apos;s Blog">
+<meta name="twitter:title" content="spring bean注入">
+<meta name="twitter:description" content="@Autowire 属于spring范畴， 默认byType装配，如果找不到，会byName装配，如果加了@Qualifier,则会按照byName，如果找不到GG
+@Resource 属于J2EE范畴，默认按照byName装配，如果找不到，按照byType装配。(1)可以指定type和name，如果全部指定，则要找到匹配type和name的bean; (2)可以指定type或者name，按照b">
   
     <link rel="alternate" href="/atom.xml" title="Where Are We From?" type="application/atom+xml">
   
@@ -66,39 +70,66 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/04/11/mysql-json/" class="archive-article-date">
-  <time datetime="2017-04-11T15:20:16.000Z" itemprop="datePublished">4月 11</time>
+        <section id="main"><article id="post-spring-autowire" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/27/spring-autowire/" class="article-date">
+  <time datetime="2017-07-27T01:05:39.000Z" itemprop="datePublished">2017-07-27</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Spring/">Spring</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/11/mysql-json/">mysql5.7支持json</a>
+    <h1 class="article-title" itemprop="name">
+      spring bean注入
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>@Autowire 属于spring范畴， 默认byType装配，如果找不到，会byName装配，如果加了@Qualifier,则会按照byName，如果找不到GG</li>
+<li>@Resource 属于J2EE范畴，默认按照byName装配，如果找不到，按照byType装配。(1)可以指定type和name，如果全部指定，则要找到匹配type和name的bean; (2)可以指定type或者name，按照byType或者byName的来匹配bean</li>
+<li>default-autowire有5个值：(1)default：默认值，指配置中的bean中默认都不装配 (2)byName, 顾名思义  (3)byType, 顾名思义 (4)constructor (5)autodetect</li>
+<li><bean id="id" class="xxx" autowire="byName">
+
+</bean></li>
+</ul>
+<p><a href="http://blog.csdn.net/otengyue/article/details/51509000" target="_blank" rel="external">一篇还不错的文章</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/07/27/spring-autowire/" data-id="cj5lqy82n00561fqn2aac8p25" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bean/">bean</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/">spring</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/07/22/dev-tool-lombok/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">lombok工具</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         
