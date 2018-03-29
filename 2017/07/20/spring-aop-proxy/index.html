@@ -5,16 +5,16 @@
   
   <title>Spring AOP 代理 | Where Are We From?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JDKProxy和CGLib代理的区别Spring代理问题排查JDKProxy示例CGLib示例Spring代理的两种区别">
+  <meta name="description" content="++ AOP的一些概念AOP全称aspect oriented programmingAspectj为java的AOP实现，还有其它语言平台的AOP实现，Spring AOP为自己的实现Joinpoint：切面织入的系统执行点Pointcut: Joinpoint的表达式Advise：切面Joinpoint执行的时机，如before，after (after returning和after thr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring AOP 代理">
 <meta property="og:url" content="http://yoursite.com/2017/07/20/spring-aop-proxy/index.html">
 <meta property="og:site_name" content="Where Are We From?">
-<meta property="og:description" content="JDKProxy和CGLib代理的区别Spring代理问题排查JDKProxy示例CGLib示例Spring代理的两种区别">
-<meta property="og:updated_time" content="2017-08-03T00:46:55.000Z">
+<meta property="og:description" content="++ AOP的一些概念AOP全称aspect oriented programmingAspectj为java的AOP实现，还有其它语言平台的AOP实现，Spring AOP为自己的实现Joinpoint：切面织入的系统执行点Pointcut: Joinpoint的表达式Advise：切面Joinpoint执行的时机，如before，after (after returning和after thr">
+<meta property="og:updated_time" content="2018-03-29T15:53:30.718Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring AOP 代理">
-<meta name="twitter:description" content="JDKProxy和CGLib代理的区别Spring代理问题排查JDKProxy示例CGLib示例Spring代理的两种区别">
+<meta name="twitter:description" content="++ AOP的一些概念AOP全称aspect oriented programmingAspectj为java的AOP实现，还有其它语言平台的AOP实现，Spring AOP为自己的实现Joinpoint：切面织入的系统执行点Pointcut: Joinpoint的表达式Advise：切面Joinpoint执行的时机，如before，after (after returning和after thr">
   
     <link rel="alternate" href="/atom.xml" title="Where Are We From?" type="application/atom+xml">
   
@@ -93,7 +93,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="http://www.cnblogs.com/resentment/p/5742661.html" target="_blank" rel="external">JDKProxy和CGLib代理的区别</a><br><a href="http://blog.csdn.net/jeff_fangji/article/details/39691503" target="_blank" rel="external">Spring代理问题排查</a><br><a href="http://rejoy.iteye.com/blog/1627405" target="_blank" rel="external">JDKProxy示例</a><br><a href="http://blog.csdn.net/yakoo5/article/details/9099133/" target="_blank" rel="external">CGLib示例</a><br><a href="http://www.cnblogs.com/fenglie/articles/4097759.html" target="_blank" rel="external">Spring代理的两种区别</a></p>
+        <p>++ AOP的一些概念<br>AOP全称aspect oriented programming<br>Aspectj为java的AOP实现，还有其它语言平台的AOP实现，Spring AOP为自己的实现<br>Joinpoint：切面织入的系统执行点<br>Pointcut: Joinpoint的表达式<br>Advise：切面Joinpoint执行的时机，如before，after (after returning和after throwing), around<br>Aspect: 包括Pointcut和Advise<br>Spring AOP分为1.0和2.0，底层实现有两种方式，一种为动态代理，用到java.lang.reflect.Proxy和java.lang,reflect.InnovationHanlder,缺点是必须要代理的类需要有interface;另外一种为字节码增强，用到MethodInterceptor，缺点是无法覆盖final方法。</p>
+<p>Spring AOP 1.0仅仅支持Joinpoint为method。</p>
+<p><a href="http://www.cnblogs.com/resentment/p/5742661.html" target="_blank" rel="external">JDKProxy和CGLib代理的区别</a><br><a href="http://blog.csdn.net/jeff_fangji/article/details/39691503" target="_blank" rel="external">Spring代理问题排查</a><br><a href="http://rejoy.iteye.com/blog/1627405" target="_blank" rel="external">JDKProxy示例</a><br><a href="http://blog.csdn.net/yakoo5/article/details/9099133/" target="_blank" rel="external">CGLib示例</a><br><a href="http://www.cnblogs.com/fenglie/articles/4097759.html" target="_blank" rel="external">Spring代理的两种区别</a></p>
 
       
     </div>
