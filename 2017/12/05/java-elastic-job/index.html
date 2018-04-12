@@ -5,16 +5,19 @@
   
   <title>分布式任务调度框架elasticJob | Where Are We From?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ElasticJob为当当基于QuartZ开发的一款开源的分布式任务调度框架，有几篇不错的文章ElasticJob入门ElasticJob开发指南ElasticJob原理ElasticJob分片原理Spring cronElasticJob Lite Console数据分片">
+  <meta name="description" content="ElasticJob为当当基于QuartZ开发的一款开源的分布式任务调度框架，有几篇不错的文章ElasticJob入门ElasticJob开发指南ElasticJob原理ElasticJob分片原理Spring cronElasticJob Lite Console数据分片
+elasticjob工作流程1.启动，JobNamespaceHandler实现NamespacesupportHandle">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式任务调度框架elasticJob">
 <meta property="og:url" content="http://yoursite.com/2017/12/05/java-elastic-job/index.html">
 <meta property="og:site_name" content="Where Are We From?">
-<meta property="og:description" content="ElasticJob为当当基于QuartZ开发的一款开源的分布式任务调度框架，有几篇不错的文章ElasticJob入门ElasticJob开发指南ElasticJob原理ElasticJob分片原理Spring cronElasticJob Lite Console数据分片">
-<meta property="og:updated_time" content="2018-04-10T15:33:06.820Z">
+<meta property="og:description" content="ElasticJob为当当基于QuartZ开发的一款开源的分布式任务调度框架，有几篇不错的文章ElasticJob入门ElasticJob开发指南ElasticJob原理ElasticJob分片原理Spring cronElasticJob Lite Console数据分片
+elasticjob工作流程1.启动，JobNamespaceHandler实现NamespacesupportHandle">
+<meta property="og:updated_time" content="2018-04-12T15:39:17.872Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式任务调度框架elasticJob">
-<meta name="twitter:description" content="ElasticJob为当当基于QuartZ开发的一款开源的分布式任务调度框架，有几篇不错的文章ElasticJob入门ElasticJob开发指南ElasticJob原理ElasticJob分片原理Spring cronElasticJob Lite Console数据分片">
+<meta name="twitter:description" content="ElasticJob为当当基于QuartZ开发的一款开源的分布式任务调度框架，有几篇不错的文章ElasticJob入门ElasticJob开发指南ElasticJob原理ElasticJob分片原理Spring cronElasticJob Lite Console数据分片
+elasticjob工作流程1.启动，JobNamespaceHandler实现NamespacesupportHandle">
   
     <link rel="alternate" href="/atom.xml" title="Where Are We From?" type="application/atom+xml">
   
@@ -94,6 +97,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>ElasticJob为当当基于QuartZ开发的一款开源的分布式任务调度框架，有几篇不错的文章<br><a href="http://blog.csdn.net/u012156858/article/details/54896329" target="_blank" rel="external">ElasticJob入门</a><br><a href="http://blog.csdn.net/tanga842428/article/details/52890188" target="_blank" rel="external">ElasticJob开发指南</a><br><a href="https://www.cnblogs.com/acyouai/p/6702044.html" target="_blank" rel="external">ElasticJob原理</a><br><a href="https://www.cnblogs.com/haoxinyue/p/6919375.html" target="_blank" rel="external">ElasticJob分片原理</a><br><a href="https://www.cnblogs.com/softidea/p/5833248.html" target="_blank" rel="external">Spring cron</a><br><a href="http://blog.csdn.net/u013274055/article/details/77767506?locationNum=5&amp;fps=1" target="_blank" rel="external">ElasticJob Lite Console</a><br><a href="https://blog.csdn.net/peerless_hero/article/details/76686974?locationNum=10&amp;fps=1" target="_blank" rel="external">数据分片</a></p>
+<h2 id="elasticjob工作流程"><a href="#elasticjob工作流程" class="headerlink" title="elasticjob工作流程"></a>elasticjob工作流程</h2><p>1.启动，JobNamespaceHandler实现NamespacesupportHandler接口，调用相应的parser解析spring中的elastic-job配置，创建JobScheduler实例<br>2.JobScheduler创建SchdulerFacade，SchedulerFacade创建ConfigService，LeaderService，ServerService，InstanceService，ShardingService<br>3.JobScheduler调用init方法，init方法中调用SchedulerFacade的registerStartUpInfo方法，在这里方法里面：LeaderService调用zk选择leader(elastic-job中,leader用于分片)，ServerService写入instance的ip到zk，InstanceService写入instance信息(ip+进程号)到zk, ShardingService在sharing znode上写入necessary(代表job执行分片之前需要分片)。<br>4.每个Instance通过Spring Quart调度，jobRunShell-&gt;LiteJob-&gt;AbstractElasticJobExecutor, (1)先执行分片分配，通过平均分配算法确定哪个分片被哪几个instance调度，并写入到sharding znode/{分片索引，例如0}/instance写入instance的信息(IP+进程号); (2)通过判断instance znode下节点信息来判断当前Instance是否可用; (3)通过遍历sharding znode所有分片已分配的instance信息，来判断当前instance应当执行哪几个分片 (4)执行分片前在对应sharding znode/{分片索引}写入running标志，代表当前分片已经在运行中了;(5)instance并发执行分配的分片;(6)删除sharding znode/{分片索引}的running标志。</p>
+<p>平均分配算法<br>设shardingcount=8，instancecount=3;<br>8/3=2;<br>循环两轮，0,1分配给instance1；2,3分配给instance2；4,5分配给instance3;<br>8%3=2;<br>把剩余的2个分片依次分配，分别是instance1和instance2.<br>所以最终，instance1得到分片[0，1，6]，instance2得到分片[2,3,7], instance3得到分片[4,5]</p>
 
       
     </div>
