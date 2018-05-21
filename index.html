@@ -95,6 +95,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><a href="https://my.oschina.net/jackieyeah/blog/157076" target="_blank" rel="external">PowerMock介绍</a><br>问题:测试JDK版本高于1.6出现，java.lang.VerifyError: Expecting a stackmap frame at branch target 50<br>原因：stackmap在1.7是默认启用，powermock采用javaassist字节码替换跟stackmap产生冲突，在JDK中可以采用JVM中加-XX:-UseSplitVerifier解决，但是JDK1.8移除了这个，需要加-noverify</p>
+<ul>
+<li>mock和spy的区别<br>简而言之，spy适用于当前测试类的大部分方法需要测试，少部分需要mock的方法用doreturn().when().method()<br>mock则反之，需要测试的少部分方法用docallrealmethod().when().method<br><a href="https://blog.csdn.net/aeroleo/article/details/49946999" target="_blank" rel="external">https://blog.csdn.net/aeroleo/article/details/49946999</a></li>
+</ul>
 
       
     </div>
